@@ -1,3 +1,8 @@
+import { sendMessage } from './modules/telegram.js';
+
+// interface 예시
+sendMessage();
+
 function initCurrentTime(data) {
     console.log(data);
     document.querySelector("#currentTradeTime").value = data;
