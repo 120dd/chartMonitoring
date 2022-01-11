@@ -10,33 +10,31 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<h1>캐셔레스트-PANDO</h1>
-<h2>가격 모니터링 프로그램 .made by Chris</h2>
-<div class="recentFCoinInfo">
-    <label for="currentTradeTime">최근거래 시간 </label><input type="text" id="currentTradeTime" value="입력금지"
-                                                         style="width:300px;height:14px;"><br>
-    <label for="currentTradePrice">최근거래 가격 </label><input type="text" id="currentTradePrice" value="입력금지"
-                                                          style="width:100px;height:14px;">
-</div>
-<div>
-    <span>※입력금지</span>
-    <br>
-    <label for="beforeTime">확인시간 </label><input type="text" id="beforeTime" style="width:300px;height:14px;">
-    <br>
-    <label for="beforePrice">확인가격 </label><input type="text" id="beforePrice">
-</div>
-<form>
-    <div>
-        <label for="tradeTimeCheckInterval">모니터링 간격 </label><input type="text" id="tradeTimeCheckInterval" value="ex) 5분 마다 체크 ➔ 5입력" onFocus="clearText(this)" >
+<h1>가격 모니터링 프로그램</h1>
+<h2>Made by Chris</h2>
+<h3>
+    <label for="teleId">텔레그램 아이디 </label><input type="text" id="teleId" value="경보받을 아이디를 적으시오" onfocus="clearValue(this)">
+</h3>
+<div class="recentFCoinInfo" id="pando">
+    <h4>
+        <span class="coinPare"><b>캐셔레스트-PANDO</b></span><br>
+        <span>※입력금지</span>
         <br>
-        <label for="telleId">텔레그램 아이디 </label><input type="text" id="telleId" value="경보받을 아이디를 적으시오" onFocus="clearText(this)">
+        <label for="currentTradeTime">최근거래 </label><input type="text" id="currentTradeTime" value="입력금지"
+                                                          style="width:150px;height:14px;">
+        <label for="currentTradePrice">최근가격 </label><input type="text" id="currentTradePrice" value="입력금지"
+                                                           style="width:70px;height:14px;"><br>
+        <label for="beforeTime">확인시간 </label><input type="text" id="beforeTime" style="width:150px;height:14px;">
+        <label for="beforePrice">확인가격 </label><input type="text" id="beforePrice" style="width:70px;height:14px;">
+    </h4>
+    <form>
+        <label for="tradeTimeCheckInterval">모니터링 간격 </label><input type="text" id="tradeTimeCheckInterval" value="ex) 5분 마다 체크 ➔ 5입력" onfocus="clearValue(this)">
         <br>
-        <label for="warningConfirmation">경보여부확인(체크하면 텔레로 경보가 갑니다, 확인후 해제해주세요)</label><input type="checkbox" id="warningConfirmation">
+        <label for="warningConfirmation">경보여부확인<br>(체크하면 텔레로 경보가 갑니다, 확인후 해제해주세요)</label><input type="checkbox" class=".textInput" id="warningConfirmation" onfocus="clearValue(this)">
         <br>
         <input type="button" value="시작" id="startBtn">
-        <br>
-    </div>
-</form>
+    </form>
+</div>
 <script type="module" src="monitoring.js"></script>
 </body>
 </html>
