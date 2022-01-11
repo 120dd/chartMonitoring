@@ -3,11 +3,6 @@ import { sendMessage } from './modules/telegram.js';
 // interface 예시
 sendMessage();
 
-function initCurrentTime(data) {
-    console.log(data);
-    document.querySelector("#currentTradeTime").value = data;
-}//가져온 최근 거래 시간 내용을 html문서에 넣는 함수
-
 function subscribePriceChanged(callback) {
     const regex = new RegExp(/"code":"PANDO"/);//정규표현식으로 문자를 다루기위해 객채의 생성자함수 호출
     const ws = new WebSocket('wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket');
@@ -34,7 +29,6 @@ subscribePriceChanged(function () {
  */
 subscribePriceChanged(function (data) {
     convertToObj(data);
-    document.querySelector("#currentTradePrice").value = result;
 })
 
 /**
@@ -45,14 +39,17 @@ subscribePriceChanged(function (data) {
  */
 function convertToObj(rawMessage) {
     let rawMessage2 = rawMessage.split(",");
-    rawMessage3 = Number(rawMessage2[9].substr(12));
-    let correctObj = rawMessage3
+    let correctObj = Number(rawMessage2[9].substr(12));
     console.log(correctObj);
-    return result = correctObj;//result가 전역 변수로 처리된것인가?
+    document.querySelector("#currentTradePrice").value = correctObj;
 }
-
-function clearText(thefield) {
-    thefield.defaultValue === thefield.value ? thefield.value = "" : {}
+/**
+ * 매게변수의 벨류값을 없애주는 함수
+ * @param obj {object} 온포커스시 실행되는 함수로 매게변수에 this를 활용하기
+ */
+function clearValue(obj) {
+    console.log("초기화");
+    obj.value = ""
 }//입력칸 누르면 기본값 없애주는 함수
 
 const startBtn = document.querySelector("#startBtn");
@@ -125,3 +122,14 @@ function checkedCheck() {
 
 //https://api.telegram.org/bot5056479372:AAH7FkyhdV7uSa-I5ihm8SV73jb5jMmN8fg/getUpdates
 //1639841695
+// function sendMsg() {
+//     let telleId = document.querySelector("#telleId").value
+//     let msg = telleId + ". 님 " + document.querySelector("#tradeTimeCheckInterval").value + "분간 거래가 없었습니다.";
+//     axios({
+//         method: 'post',
+//         url: 'https://api.telegram.org/bot5056479372:AAH7FkyhdV7uSa-I5ihm8SV73jb5jMmN8fg/sendMessage',
+//         data: {
+//             chat_id: '-653063417',
+//             text: msg
+//         }
+//     });
