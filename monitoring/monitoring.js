@@ -1,26 +1,9 @@
 import {sendMsg} from './modules/telegram.js';
 
 const userInput = document.querySelectorAll(".userInput");
-console.log(userInput.length);
-userInput[0].onclick = function(){console.log("ih")};
 for (let i = 0; i < userInput.length; i++){
-    console.log("ih");
     userInput[i].onfocus = clearValue;
-}
-
-const startBtn = document.querySelector("#startBtn");
-let beforeTime = document.querySelector("#beforeTime");
-
-let sendTeleId = document.querySelector("#teleId").value;
-document.querySelector("#teleId").onchange = function () {
-    sendTeleId = document.querySelector("#teleId").value;
-}
-
-let intervalForMsg;
-document.querySelector("#tradeTimeCheckInterval").onchange = function () {
-    intervalForMsg = document.querySelector("#tradeTimeCheckInterval").value;
-}
-
+}//유저입력클래스값 태그 누르면 값 없애는 함수 실행
 /**
  * this의 value값을 초기화시키는 함수
  */
@@ -28,6 +11,30 @@ function clearValue() {
     this.value = "";
     console.log("초기화");
 }
+
+const startBtn = document.querySelector("#startBtn");
+let beforeTime = document.querySelector("#beforeTime");
+
+let teleId = document.querySelector("#teleId");
+let checkInterval = document.querySelector("#tradeTimeCheckInterval");
+let sendTeleId = teleId.value;
+teleId.onchange = function () {
+    sendTeleId = document.querySelector("#teleId").value;
+}
+
+let intervalForMsg;
+checkInterval.onchange = function () {
+    intervalForMsg = checkInterval.value;
+    console.log(this);
+}
+//굳이 변수 텔레아이디로 안빼도 큰 문제가 없을련지 궁금하네요 또한 중복되는 즉시실행함수도 기명함수로 뺄까고민됩니다.
+//예시입니다
+// 다음 코드 삭제 let teleId = document.querySelector("#teleId");
+// let sendTeleId = document.querySelector("#teleId").value;
+// document.querySelector("#teleId").onchange = function () {
+//     sendTeleId = document.querySelector("#teleId").value;
+// }
+
 /**
  *특정 url에서 특정 메세지가 올때마다 콜백함수를 실행
  * @param callback {function} 콜백시 실핼될 함수 넣기
@@ -47,7 +54,6 @@ function subscribePriceChanged(callback) {
         }
     }
 }
-
 /**
  * 함수 실행시 시간을 특정 태그에 입력하는 함수
  */
@@ -75,12 +81,17 @@ function convertToObj(rawMessage) {
     document.querySelector("#currentTradePrice").value = correctObj;
 }
 
-
+/**
+ * 모니터링 간격을 밀리세컨드로 바꾸는 함수
+ * @returns {number} 밀리세컨드로 변환된 함수
+ */
 const intervalByMs = () => {
     const intervalTimeMinute = document.querySelector("#tradeTimeCheckInterval").value;
     return intervalTimeMinute * 60000;
-}//모니터링 간격(밀리세컨드)
-
+}
+/**
+ * 스타트버튼값에 따라 모니터링함수를 시작 또는 중지(페이지 새로고침)
+ */
 startBtn.onclick = function () {
     if (startBtn.value === "시작") {
         mornitoringStart();
@@ -90,7 +101,7 @@ startBtn.onclick = function () {
 }
 
 /**
- *
+ *최근 거래란에 값 입력, 시간비교함수를 주기적으로 실행
  */
 function mornitoringStart() {
     beforeTime.value = document.querySelector("#currentTradeTime").value;
@@ -102,7 +113,7 @@ function mornitoringStart() {
     }
 }// 버튼 누르면 실행되는 함수, 확인 시간에 현재 시간 할당, 모니터링 간격 안쓰면 경보
 /**
- *
+ *최근 거래란과 확인시간의 값이 같을 때 체크박스를 체크하는 함수
  */
 function compareTime() {
     if (beforeTime.value === document.querySelector("#currentTradeTime").value) {
