@@ -1,3 +1,11 @@
+const userInput = document.querySelectorAll(".userInput");
+console.log(userInput.length);
+userInput[0].onclick = function(){console.log("ih")};
+for (let i = 0; i < userInput.length; i++){
+    console.log("ih");
+    userInput[i].onfocus = clearValue;
+}
+
 import {sendMsg} from './modules/telegram.js';
 
 function subscribePriceChanged(callback) {
@@ -109,7 +117,7 @@ document.querySelector("#tradeTimeCheckInterval").onchange = function () {
     intervalForMsg = document.querySelector("#tradeTimeCheckInterval").value;
 }
 
-function clearValue(obj) {
+export function clearValue() {
+    this.value = "";
     console.log("초기화");
-    obj.value = ""
 }
