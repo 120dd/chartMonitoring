@@ -41,5 +41,12 @@
     </form>
 </div>
 <script type="module" src="monitoring.js"></script>
+<script type="module">
+    import { clearValue } from './monitoring.js';
+
+    window.onload = () => {
+        $('#tradeTimeCheckInterval').onfocus = clearValue;
+    };
+</script>
 </body>
 </html>
