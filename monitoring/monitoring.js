@@ -1,7 +1,4 @@
-import { sendMessage } from './modules/telegram.js';
-
-// interface 예시
-sendMessage();
+import {sendMsg} from './modules/telegram.js';
 
 function subscribePriceChanged(callback) {
     const regex = new RegExp(/"code":"PANDO"/);//정규표현식으로 문자를 다루기위해 객채의 생성자함수 호출
@@ -43,14 +40,15 @@ function convertToObj(rawMessage) {
     console.log(correctObj);
     document.querySelector("#currentTradePrice").value = correctObj;
 }
-/**
- * 매게변수의 벨류값을 없애주는 함수
- * @param obj {object} 온포커스시 실행되는 함수로 매게변수에 this를 활용하기
- */
-function clearValue(obj) {
-    console.log("초기화");
-    obj.value = ""
-}//입력칸 누르면 기본값 없애주는 함수
+
+// /**
+//  * 매게변수의 벨류값을 없애주는 함수
+//  * @param obj {object} 온포커스시 실행되는 함수로 매게변수에 this를 활용하기
+//  */
+// function clearValue(obj) {
+//     console.log("초기화");
+//     obj.value = ""
+// }//입력칸 누르면 기본값 없애주는 함수
 
 const startBtn = document.querySelector("#startBtn");
 let beforeTime = document.querySelector("#beforeTime");
@@ -84,52 +82,34 @@ function compareTime() {
     } else {
         beforeTime.value = document.querySelector("#currentTradeTime").value;
     }
-}//todo 체크 시 경보 날라오기
+}
 
 const warningCheckBox = document.querySelector("#warningConfirmation");
 
-// warningCheckBox.onchange = function () {
-//     if (warningCheckBox.checked === true) {
-//         sendMsg();
-//         console.log("체크됨");
-//     } else {
-//         console.log("체크해제됨");
-//     }
-// }
+const intervalId = setInterval(checkedCheck, 1000)
 
-function sendMsg() {
-    let telleId = document.querySelector("#telleId").value
-    let msg = telleId + ". 님 " + document.querySelector("#tradeTimeCheckInterval").value + "분간 거래가 없었습니다.";
-    axios({
-        method: 'post',
-        url: 'https://api.telegram.org/bot5056479372:AAH7FkyhdV7uSa-I5ihm8SV73jb5jMmN8fg/sendMessage',
-        data: {
-            chat_id: '-653063417',
-            text: msg
-        }
-    });
-}
-const intervalId = setInterval(checkedCheck,1000)
 function checkedCheck() {
     if (warningCheckBox.checked === true) {
-        sendMsg();
-        console.log("체크됨");
+        let msg = sendTeleId + ". 님 " + intervalForMsg + "분간 거래가 없었습니다.";
+        sendMsg(msg);
+        console.log(msg);
         clearInterval(intervalId);
-    }else {
+    } else {
         console.log("체크안됨");
     }
 }
 
-//https://api.telegram.org/bot5056479372:AAH7FkyhdV7uSa-I5ihm8SV73jb5jMmN8fg/getUpdates
-//1639841695
-// function sendMsg() {
-//     let telleId = document.querySelector("#telleId").value
-//     let msg = telleId + ". 님 " + document.querySelector("#tradeTimeCheckInterval").value + "분간 거래가 없었습니다.";
-//     axios({
-//         method: 'post',
-//         url: 'https://api.telegram.org/bot5056479372:AAH7FkyhdV7uSa-I5ihm8SV73jb5jMmN8fg/sendMessage',
-//         data: {
-//             chat_id: '-653063417',
-//             text: msg
-//         }
-//     });
+let sendTeleId = "";
+document.querySelector("#teleId").onchange = function () {
+    sendTeleId = document.querySelector("#teleId").value;
+}
+
+let intervalForMsg;
+document.querySelector("#tradeTimeCheckInterval").onchange = function () {
+    intervalForMsg = document.querySelector("#tradeTimeCheckInterval").value;
+}
+
+function clearValue(obj) {
+    console.log("초기화");
+    obj.value = ""
+}
