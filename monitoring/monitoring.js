@@ -25,7 +25,6 @@ teleId.onchange = function () {
 let intervalForMsg;
 checkInterval.onchange = function () {
     intervalForMsg = checkInterval.value;
-    console.log(this);
 }
 //굳이 변수 텔레아이디로 안빼도 큰 문제가 없을련지 궁금하네요 또한 중복되는 즉시실행함수도 기명함수로 뺄까고민됩니다.
 //예시입니다
@@ -34,26 +33,44 @@ checkInterval.onchange = function () {
 // document.querySelector("#teleId").onchange = function () {
 //     sendTeleId = document.querySelector("#teleId").value;
 // }
-
 /**
  *특정 url에서 특정 메세지가 올때마다 콜백함수를 실행
  * @param callback {function} 콜백시 실핼될 함수 넣기
  */
+
+
 function subscribePriceChanged(callback) {
     const regex = new RegExp(/"code":"PANDO"/);//정규표현식사용
-    const ws = new WebSocket('wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket');
+    let ws = new WebSocket('wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket');
+    // setInterval(function () {
+    //     console.log("연결유지용발신");
+    //     ws.send("");
+    // },1000)
     ws.onmessage = function (event) {
+        // console.log(event.data);
         if (event.data.startsWith('0')) {
             ws.send('40');
+            console.log("40보냄");
         } else if (event.data.startsWith('40')) {
             ws.send('42["s",{"join":{"market":"usdt","coin":"2137"},"leave":{}}]');
+            console.log("42보냄");
         } else {
             if (regex.test(event.data)) {//대응되는 문자열이있는지 검사 불리언으로 출력
                 callback(event.data);
+                setInterval(function () {
+                    console.log("연결유지용발신");
+                    ws.send("3");
+                },1000)
             }
         }
+        ws.onclose = function () {
+            console.log("웹소켓이 끊어졌습니다");
+        }
+        ws.onerror = function () {
+            console.log("웹소켓 에러발생");
+        }
     }
-}
+}//주기적으로 상호작용을 해도 끊긴다
 /**
  * 함수 실행시 시간을 특정 태그에 입력하는 함수
  */
