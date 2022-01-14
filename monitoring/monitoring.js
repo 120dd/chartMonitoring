@@ -30,8 +30,6 @@ checkInterval.onchange = function () {
  *특정 url에서 특정 메세지가 올때마다 콜백함수를 실행
  * @param callback {function} 콜백시 실핼될 함수 넣기
  */
-
-
 function subscribePriceChanged(callback) {
     const regex = new RegExp(/"code":"PANDO"/);//정규표현식사용
     let ws = new WebSocket('wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket');
@@ -124,8 +122,9 @@ startBtn.onclick = function () {
  *최근 거래란과 확인시간의 값이 같을 때 체크박스를 체크하는 함수
  */
 function compareTime() {
-    if (beforeTime.value === document.querySelector("#currentTradeTime").value) {
+    if (beforeTime.value === document.querySelector("#currentTradeTime").value&&startBtn.value==="중지") {
         document.querySelector("#warningConfirmation").checked = true;
+        startBtn.value = "시작";
     } else {
         beforeTime.value = document.querySelector("#currentTradeTime").value;
     }
@@ -140,10 +139,11 @@ const checkIntervalId = setInterval(checkedCheck, 1000)
  */
 function checkedCheck() {
     if (warningCheckBox.checked === true) {
-        let msg = sendTeleId + ". 님 "+"캐셔레스트/PANDO가"+ intervalForMsg + "분간 거래가 없었습니다.";
+        let msg = sendTeleId + ". 님 "+"캐셔레스트/PANDO "+ intervalForMsg + "분간 거래가 없었습니다.";
         sendMsg(msg);
         console.log(msg);
         warningCheckBox.checked = false;
+        startBtn.value = "시작";
     }
 }////////////////////이후부턴 신드럼코인 모니터링 코드
 
@@ -252,8 +252,9 @@ cindStartBtn.onclick = function () {
  *최근 거래란과 확인시간의 값이 같을 때 체크박스를 체크하는 함수
  */
 function cindCompareTime() {
-    if (cindBeforeTime.value === document.querySelector("#cindCurrentTradeTime").value) {
+    if (cindBeforeTime.value === document.querySelector("#cindCurrentTradeTime").value&&cindStartBtn.value==="중지") {
         document.querySelector("#cindWarningConfirmation").checked = true;
+        cindStartBtn.value = "시작";
     } else {
         cindBeforeTime.value = document.querySelector("#cindCurrentTradeTime").value;
     }
@@ -268,10 +269,11 @@ const cindCheckIntervalId = setInterval(cindCheckedCheck, 1000)
  */
 function cindCheckedCheck() {
     if (cindWarningCheckBox.checked === true) {
-        let cindMsg = sendTeleId + ". 님 "+"캐셔레스트-CIND"+ cindIntervalForMsg + "분간 거래가 없었습니다.";
+        let cindMsg = sendTeleId + ". 님 "+"캐셔레스트-CIND "+ cindIntervalForMsg + "분간 거래가 없었습니다.";
         sendMsg(cindMsg);
         console.log(cindMsg);
         cindWarningCheckBox.checked = false;
+        cindStartBtn.value = "시작";
     }
 }
 ////////////////////////////////////////////////////////
