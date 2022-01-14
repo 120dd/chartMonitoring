@@ -143,9 +143,7 @@ function checkedCheck() {
         let msg = sendTeleId + ". 님 "+"캐셔레스트/PANDO가"+ intervalForMsg + "분간 거래가 없었습니다.";
         sendMsg(msg);
         console.log(msg);
-        clearInterval(checkIntervalId);
-    } else {
-        console.log("체크안됨");
+        warningCheckBox.checked = false;
     }
 }////////////////////이후부턴 신드럼코인 모니터링 코드
 
@@ -153,10 +151,6 @@ const cindStartBtn = document.querySelector("#cindStartBtn");
 let cindBeforeTime = document.querySelector("#cindBeforeTime");
 
 let cindCheckInterval = document.querySelector("#cindTradeTimeCheckInterval");
-let cindSendTeleId = teleId.value;
-teleId.onchange = function () {
-    cindSendTeleId = document.querySelector("#teleId").value;
-}
 
 let cindIntervalForMsg;
 cindCheckInterval.onchange = function () {
@@ -274,12 +268,10 @@ const cindCheckIntervalId = setInterval(cindCheckedCheck, 1000)
  */
 function cindCheckedCheck() {
     if (cindWarningCheckBox.checked === true) {
-        let msg = cindSendTeleId + ". 님 "+"캐셔레스트-CIND"+ cindIntervalForMsg + "분간 거래가 없었습니다.";
-        sendMsg(msg);
-        console.log(msg);
-        clearInterval(cindCheckIntervalId);
-    } else {
-        console.log("체크안됨");
+        let cindMsg = sendTeleId + ". 님 "+"캐셔레스트-CIND"+ cindIntervalForMsg + "분간 거래가 없었습니다.";
+        sendMsg(cindMsg);
+        console.log(cindMsg);
+        cindWarningCheckBox.checked = false;
     }
 }
 ////////////////////////////////////////////////////////
