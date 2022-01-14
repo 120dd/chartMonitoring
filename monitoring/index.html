@@ -13,28 +13,34 @@
 <h1>가격 모니터링 프로그램</h1>
 <h2>Made by Chris</h2>
 <h3>
-    <label for="teleId">텔레그램 아이디 </label><input type="text" id="teleId" class="userInput" value="경보받을 아이디를 적으시오">
+    <label>텔레그램 아이디</label>
+    <input id="teleId" class="userInput" value="경보받을 아이디를 적으시오">
 </h3>
 <div class="recentFCoinInfo" id="pando">
     <h4>
-        <span class="coinPare"><b>캐셔레스트-PANDO</b></span><br>
+        <span class="coinPare">
+            <b>캐셔레스트-PANDO</b>
+        </span>
         <br>
-        <label for="currentTradeTime">최근거래 </label><input type="text" id="currentTradeTime" value="자동입력"
-                                                          style="width:200px;height:14px;">
-        <label for="currentTradePrice">최근가격 </label><input type="text" id="currentTradePrice" value="자동입력"
-                                                           style="width:70px;height:14px;"><br>
-        <label for="beforeTime">확인시간 </label><input type="text" id="beforeTime" style="width:200px;height:14px;" value="자동입력">
-        <label for="beforePrice">확인가격 </label><input type="text" id="beforePrice" style="width:70px;height:14px;" value="미구현">
+        <label>최근거래</label>
+        <input id="currentTradeTime" value="자동입력" style="width:200px;height:14px;">
+        <label>최근가격</label>
+        <input id="currentTradePrice" value="자동입력" style="width:70px;height:14px;">
+        <br>
+        <label>확인시간</label>
+        <input id="beforeTime" style="width:200px;height:14px;" value="자동입력">
+        <label>확인가격</label>
+        <input id="beforePrice" style="width:70px;height:14px;" value="미구현">
     </h4>
     <form>
-        <label for="tradeTimeCheckInterval">모니터링 간격 </label><input type="text"  class="userInput" id="tradeTimeCheckInterval"
-                                                                   value="ex) 5분 마다 체크 ➔ 5입력">
+        <label>모니터링 간격</label>
+        <input class="userInput" id="tradeTimeCheckInterval" value="ex) 5분 마다 체크 ➔ 5입력">
         <br>
-        <label for="warningConfirmation">경보여부확인<br>텔레경보확인</label><input type="checkbox"
-                                                                                                class="userInput"
-                                                                                                id="warningConfirmation">
+        <label>경보여부확인<br>텔레경보확인</label>
+        <input type="checkbox" id="warningConfirmation">
         <br>
-        <label for="startBtn">판도코인모니터링=></label> <input type="button" value="시작" id="startBtn">
+        <label>판도코인모니터링=></label>
+        <input type="button" value="시작" id="startBtn">
     </form>
 </div>
 <script type="module" src="monitoring.js"></script>
