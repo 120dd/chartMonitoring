@@ -270,3 +270,4 @@ function cindCheckedCheck() {
         cindStartBtn.value = "시작";
     }
 }
+

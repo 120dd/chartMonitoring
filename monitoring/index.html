@@ -59,7 +59,38 @@
     <label for="cindStartBtn">신드럼코인모니터링=></label> <input type="button" value="시작" id="cindStartBtn">
 </form>
 </div>
-<script type="module" src="monitoring.js"></script>
+<div>
+    <h4>
+        <span><b>나무샘플-CIND</b></span>
+        <br>
+        <br>
+        <label>최근거래</label>
+        <input value="자동입력" style="width:200px;height:14px;">
+        <label>최근가격</label>
+        <input value="자동입력" style="width:70px;height:14px;">
+        <br>
+        <label>확인시간</label>
+        <input style="width:200px;height:14px;" value="자동입력">
+        <label>확인가격</label>
+        <input style="width:70px;height:14px;" value="미구현">
+    </h4>
+    <form>
+        <label>모니터링 간격</label>
+        <input class="userInput" value="ex) 5분 마다 체크 ➔ 5입력">
+        <br>
+        <label>
+            경보여부확인
+            <br>
+            텔레경보확인
+        </label>
+        <input type="checkbox">
+        <br>
+        <label>신드럼코인모니터링=></label>
+        <input id="namu-trigger-button" type="button" value="시작">
+    </form>
+</div>
+<!--<script type="module" src="monitoring.js"></script>-->
+<script type="module" src="main.js"></script>
 <script type="text/javascript">
     window.onbeforeunload = function() {
         return "Are you sure you want to leave?";
