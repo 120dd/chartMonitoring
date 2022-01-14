@@ -18,14 +18,13 @@
 <div class="recentFCoinInfo" id="pando">
     <h4>
         <span class="coinPare"><b>캐셔레스트-PANDO</b></span><br>
-        <span>※입력금지</span>
         <br>
-        <label for="currentTradeTime">최근거래 </label><input type="text" id="currentTradeTime" value="입력금지"
+        <label for="currentTradeTime">최근거래 </label><input type="text" id="currentTradeTime" value="자동입력"
                                                           style="width:200px;height:14px;">
-        <label for="currentTradePrice">최근가격 </label><input type="text" id="currentTradePrice" value="입력금지"
+        <label for="currentTradePrice">최근가격 </label><input type="text" id="currentTradePrice" value="자동입력"
                                                            style="width:70px;height:14px;"><br>
-        <label for="beforeTime">확인시간 </label><input type="text" id="beforeTime" style="width:200px;height:14px;">
-        <label for="beforePrice">확인가격 </label><input type="text" id="beforePrice" style="width:70px;height:14px;">
+        <label for="beforeTime">확인시간 </label><input type="text" id="beforeTime" style="width:200px;height:14px;" value="자동입력">
+        <label for="beforePrice">확인가격 </label><input type="text" id="beforePrice" style="width:70px;height:14px;" value="미구현">
     </h4>
     <form>
         <label for="tradeTimeCheckInterval">모니터링 간격 </label><input type="text"  class="userInput" id="tradeTimeCheckInterval"
@@ -35,9 +34,36 @@
                                                                                                 class="userInput"
                                                                                                 id="warningConfirmation">
         <br>
-        <input type="button" value="시작" id="startBtn">
+        <label for="startBtn">판도코인모니터링=></label> <input type="button" value="시작" id="startBtn">
     </form>
 </div>
+<div class="recentCindInfo" id="cindrum">
+<h4>
+    <span class="coinPare"><b>캐셔레스트-CIND</b></span><br>
+    <br>
+    <label for="cindCurrentTradeTime">최근거래 </label><input type="text" id="cindCurrentTradeTime" value="자동입력"
+                                                      style="width:200px;height:14px;">
+    <label for="cindCurrentTradePrice">최근가격 </label><input type="text" id="cindCurrentTradePrice" value="자동입력"
+                                                       style="width:70px;height:14px;"><br>
+    <label for="cindBeforeTime">확인시간 </label><input type="text" id="cindBeforeTime" style="width:200px;height:14px;" value="자동입력">
+    <label for="cindBeforePrice">확인가격 </label><input type="text" id="cindBeforePrice" style="width:70px;height:14px;" value="미구현">
+</h4>
+<form>
+    <label for="cindTradeTimeCheckInterval">모니터링 간격 </label><input type="text"  class="userInput" id="cindTradeTimeCheckInterval"
+                                                               value="ex) 5분 마다 체크 ➔ 5입력">
+    <br>
+    <label for="cindWarningConfirmation">경보여부확인<br>(체크하면 텔레로 경보가 갑니다, 확인후 해제해주세요)</label><input type="checkbox"
+                                                                                            class="userInput"
+                                                                                            id="cindWarningConfirmation">
+    <br>
+    <label for="cindStartBtn">신드럼코인모니터링=></label> <input type="button" value="시작" id="cindStartBtn">
+</form>
+</div>
 <script type="module" src="monitoring.js"></script>
+<script type="text/javascript">
+    window.onbeforeunload = function() {
+        return "Are you sure you want to leave?";
+    }
+</script>
 </body>
 </html>
