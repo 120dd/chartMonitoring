@@ -1,4 +1,5 @@
 import {sendMsg} from './modules/telegram.js';
+import { minutesToMillis } from './modules/utils.js';
 
 const userInput = document.querySelectorAll(".userInput");
 for (let i = 0; i < userInput.length; i++){
@@ -132,7 +133,7 @@ function compareTime() {
 
 const warningCheckBox = document.querySelector("#warningConfirmation");
 
-const checkIntervalId = setInterval(checkedCheck, 1000)
+setInterval(checkedCheck, 1000)
 
 /**
  * 전송 확인용 체크박스가 체크되면 동적으로(?) msg변수를 생성, 체크드체크를 정지
@@ -215,14 +216,6 @@ function cindConvertToObj(rawMessage) {
 }
 
 /**
- * 모니터링 간격을 밀리세컨드로 바꾸는 함수
- * @returns {number} 밀리세컨드로 변환된 함수
- */
-const cindIntervalByMs = () => {
-    const cindIntervalTimeMinute = document.querySelector("#cindTradeTimeCheckInterval").value;
-    return cindIntervalTimeMinute * 60000;
-}
-/**
  *최근 거래란에 값 입력, 시간비교함수를 주기적으로 실행
  */
 let cindIntervalId;
@@ -230,7 +223,8 @@ let cindIntervalId;
 function cindMornitoringStart() {
     cindBeforeTime.value = document.querySelector("#cindCurrentTradeTime").value;
     if (document.querySelector("#cindTradeTimeCheckInterval").value.length < 4) {
-        cindIntervalId = setInterval(cindCompareTime, cindIntervalByMs());
+        const cindIntervalTimeMinute = document.querySelector("#cindTradeTimeCheckInterval").value;
+        cindIntervalId = setInterval(cindCompareTime, minutesToMillis(cindIntervalTimeMinute));
     } else {
         alert("모니터링 간격을 수정해주세요");
     }
@@ -262,7 +256,7 @@ function cindCompareTime() {
 
 const cindWarningCheckBox = document.querySelector("#cindWarningConfirmation");
 
-const cindCheckIntervalId = setInterval(cindCheckedCheck, 1000)
+setInterval(cindCheckedCheck, 1000)
 
 /**
  * 전송 확인용 체크박스가 체크되면 동적으로(?) msg변수를 생성, 체크드체크를 정지
@@ -276,4 +270,3 @@ function cindCheckedCheck() {
         cindStartBtn.value = "시작";
     }
 }
-////////////////////////////////////////////////////////
