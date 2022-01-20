@@ -18,9 +18,7 @@
 </h3>
 <div class="recentFCoinInfo" id="pando">
     <h4>
-        <span class="coinPare">
-            <b>캐셔레스트-PANDO</b>
-        </span>
+        <span class="coinPare"><b>캐셔레스트-PANDO</b></span>
         <br>
         <label>최근거래</label>
         <input id="currentTradeTime" value="자동입력" style="width:200px;height:14px;">
@@ -28,22 +26,21 @@
         <input id="currentTradePrice" value="자동입력" style="width:70px;height:14px;">
         <br>
         <label>확인시간</label>
-        <input id="beforeTime" style="width:200px;height:14px;" value="자동입력">
+        <input id="beforeTradeTime" style="width:200px;height:14px;" value="자동입력">
         <label>확인가격</label>
-        <input id="beforePrice" style="width:70px;height:14px;" value="미구현">
+        <input id="beforeTradePrice" style="width:70px;height:14px;" value="미구현">
     </h4>
     <form>
         <label>모니터링 간격</label>
         <input class="userInput" id="tradeTimeCheckInterval" value="ex) 5분 마다 체크 ➔ 5입력">
         <br>
-        <label>경보여부확인<br>텔레경보확인</label>
-        <input type="checkbox" id="warningConfirmation">
         <br>
         <label>판도코인모니터링=></label>
         <input type="button" value="시작" id="startBtn">
     </form>
 </div>
-<script type="module" src="monitoring.js"></script>
+<script type="module" src="main.js"></script>
+<script type="module" src="pando.js"></script>
 <script type="text/javascript">
     window.onbeforeunload = function() {
         return "Are you sure you want to leave?";
