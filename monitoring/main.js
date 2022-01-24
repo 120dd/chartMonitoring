@@ -49,7 +49,7 @@ startBtn.onclick = () => {
 setCallback(() => {
         if (setErrorOccur()==='errorOn' && startBtn.value === '중지') {
             console.error('모니터링이 문제를 찾아냈습니다!');
-            let pandoMsg = `${teleId}.님 pando-캐셔레스트 거래가 ${pandoInterval}동안 없었습니다`
+            let pandoMsg = `${teleId}.님 CIND-캐셔레스트 거래가 ${pandoInterval}동안 없었습니다`
             sendMsg(pandoMsg);
             startBtn.value = "시작"
         }

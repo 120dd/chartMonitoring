@@ -26,7 +26,7 @@ const WS_PING_PONG_INTERVAL = 10000;
 
 const CASHIEREST_WS_URL = 'wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket';
 
-const PANDO_DATA_EVENT_PATTERN = new RegExp(/"code":"PANDO"/);
+const PANDO_DATA_EVENT_PATTERN = new RegExp(/"code":"CIND"/);
 
 export function setCurrentTradeTimeInput(_currentTradeTimeInput) {
     currentTradeTimeInput = _currentTradeTimeInput;
@@ -91,7 +91,7 @@ function subscribePriceChanged(fn) {
         }
 
         if (event.data.startsWith('40')) {
-            ws.send('42["s",{"join":{"market":"usdt","coin":"2137"},"leave":{}}]');
+            ws.send('42["s",{"join":{"market":"usdt","coin":"2138"},"leave":{}}]');
             if (DEBUG) {
                 console.log("42보냄");
             }
