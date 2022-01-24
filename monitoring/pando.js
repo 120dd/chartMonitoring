@@ -1,11 +1,6 @@
-import {
-    setPandoInterval,
-} from "./main.js";
+import {setPandoInterval,} from "./main.js";
 
-import {
-    compareTime,
-    minutesToMillis,
-} from "./modules/utils.js";
+import {compareTime, minutesToMillis,} from "./modules/utils.js";
 
 /**
  * status
@@ -19,7 +14,7 @@ import {
  */
 let status,callBack,errorStatus,pandoCompareId;
 
-let currentTradeTimeInput = document.querySelector("#currentTradeTime");
+let currentTradeTimeInput;
 
 let currentTradePriceInput = document.querySelector("#currentTradePrice");
 
@@ -32,6 +27,10 @@ const WS_PING_PONG_INTERVAL = 10000;
 const CASHIEREST_WS_URL = 'wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket';
 
 const PANDO_DATA_EVENT_PATTERN = new RegExp(/"code":"PANDO"/);
+
+export function setCurrentTradeTimeInput(_currentTradeTimeInput) {
+    currentTradeTimeInput = _currentTradeTimeInput;
+}
 
 export function setErrorOccur() {
     return errorStatus;
@@ -53,12 +52,11 @@ export function start() {
     status = 'enabled';
     //거래가 일어날 때 마다 해당 정보를 확인란에 적어주는 함수
     subscribePriceChanged((data)=> {
-        let lastTime = new Date();
         // console.log(lastTime); 이것들을 쓰면 중복 에러메세지가 안뜸 이유 궁금함
-        currentTradeTimeInput.value = lastTime;
+        currentTradeTimeInput.value = new Date();
         let rawMessage = data.split(",");
         let correctObj = Number(rawMessage[9].substr(12));
-        // console.log(correctObj);
+        console.log(correctObj);
         currentTradePriceInput.value = correctObj;
     });
     pandoCompareId = setInterval(function () {

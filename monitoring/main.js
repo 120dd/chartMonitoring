@@ -4,6 +4,7 @@ import {
     stop,
     setErrorOccur,
     setCallback,
+    setCurrentTradeTimeInput,
 } from "./pando.js";
 
 import {
@@ -55,3 +56,6 @@ setCallback(() => {
     }
 )
 
+document.querySelector("#currentTradeTime").onchange = function (event) {
+    setCurrentTradeTimeInput(event.target.value);
+}

@@ -43,3 +43,13 @@ export function compareTime(compare1,compare2,fn) {
             compare2.value = compare1.value;
         }
 }
+
+
+/**
+ * target에서 content를 가져오는 함수
+ * @param contentArray
+ * @param target
+ */
+function importFromOther(target,contentArray) {
+ 
+}
