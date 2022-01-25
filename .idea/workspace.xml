@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8253ac4-3e98-422b-a8c6-b7513cbd8d25" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/monitoring/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitoring/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/monitoring/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitoring/pando.js" beforeDir="false" afterPath="$PROJECT_DIR$/monitoring/pando.js" afterDir="false" />
     </list>
@@ -16,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="리팩토링#1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,11 +47,23 @@
       <option name="presentableId" value="Default" />
       <updated>1643035943378</updated>
       <workItem from="1643035945281" duration="38000" />
-      <workItem from="1643036012184" duration="4996000" />
+      <workItem from="1643036012184" duration="5820000" />
     </task>
+    <task id="LOCAL-00001" summary="임시배포용, 거래소 업데이트로 내부 로직 변경">
+      <created>1643076889520</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1643076889520</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="임시배포용, 거래소 업데이트로 내부 로직 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="임시배포용, 거래소 업데이트로 내부 로직 변경" />
   </component>
 </project>
