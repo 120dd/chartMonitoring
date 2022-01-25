@@ -14,7 +14,7 @@ import {compareTime, minutesToMillis,} from "./modules/utils.js";
  */
 let status,callBack,errorStatus,pandoCompareId;
 
-let currentTradeTimeInput;
+let currentTradeTimeInput = document.querySelector("#currentTradeTime");
 
 let currentTradePriceInput = document.querySelector("#currentTradePrice");
 
@@ -26,11 +26,12 @@ const WS_PING_PONG_INTERVAL = 10000;
 
 const CASHIEREST_WS_URL = 'wss://nodes.cashierest.com/socket.io/?EIO=4&transport=websocket';
 
-const PANDO_DATA_EVENT_PATTERN = new RegExp(/"code":"PANDO"/);
+const PANDO_DATA_EVENT_PATTERN = new RegExp(/"id":2135,"market":"usdt","market_id":2074,/);
+//"id":2135,"market":"usdt","market_id":2074,"type":"turn","list":[{"lastTurnId":
 
-export function setCurrentTradeTimeInput(_currentTradeTimeInput) {
-    currentTradeTimeInput = _currentTradeTimeInput;
-}
+// export function setCurrentTradeTimeInput(_currentTradeTimeInput) {
+//     currentTradeTimeInput = _currentTradeTimeInput;
+// }
 
 export function setErrorOccur() {
     return errorStatus;
@@ -52,12 +53,15 @@ export function start() {
     status = 'enabled';
     //거래가 일어날 때 마다 해당 정보를 확인란에 적어주는 함수
     subscribePriceChanged((data)=> {
-        // console.log(lastTime); 이것들을 쓰면 중복 에러메세지가 안뜸 이유 궁금함
-        currentTradeTimeInput.value = new Date();
-        let rawMessage = data.split(",");
-        let correctObj = Number(rawMessage[9].substr(12));
-        console.log(correctObj);
-        currentTradePriceInput.value = correctObj;
+        if (data.includes("lastTurnId","time")){
+            currentTradeTimeInput.value = new Date();
+            console.log(currentTradeTimeInput.value);
+            let rawMessage = data.split(",");
+            // console.log(rawMessage);
+            let correctObj = Number(rawMessage[9].substr(12));
+            console.log(correctObj);
+            currentTradePriceInput.value = correctObj;
+        }
     });
     pandoCompareId = setInterval(function () {
         compareTime(currentTradeTimeInput,checkedTradeTimeInput,errorOccur);
@@ -91,7 +95,7 @@ function subscribePriceChanged(fn) {
         }
 
         if (event.data.startsWith('40')) {
-            ws.send('42["s",{"join":{"market":"usdt","coin":"2137"},"leave":{}}]');
+            ws.send('42["s",{"join":{"market":"usdt","coin":"2135"},"leave":{"market":"usdt","coin":"2117"}}]');
             if (DEBUG) {
                 console.log("42보냄");
             }
