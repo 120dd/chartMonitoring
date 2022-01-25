@@ -57,7 +57,6 @@ export function start() {
             currentTradeTimeInput.value = new Date();
             console.log(currentTradeTimeInput.value);
             let rawMessage = data.split(",");
-            // console.log(rawMessage);
             let correctObj = Number(rawMessage[9].substr(12));
             console.log(correctObj);
             currentTradePriceInput.value = correctObj;
@@ -82,14 +81,18 @@ export function stop() {
 function subscribePriceChanged(fn) {
     let ws = new WebSocket(CASHIEREST_WS_URL);
 
-    // 아래 코드를 실행하지 않으면 connection 이 끊어짐
-    maintainConnection(ws);
-
     ws.onmessage = function (event) {
         if (event.data.startsWith('0')) {
             ws.send('40');
             if (DEBUG) {
                 console.log("40보냄");
+            }
+            return;
+        }
+        if (event.data.startsWith('2')) {
+            ws.send('3');
+            if (DEBUG) {
+                console.log("3보냄");
             }
             return;
         }
@@ -135,16 +138,6 @@ function isPandoDataEvent(data) {
     return PANDO_DATA_EVENT_PATTERN.test(data);
 }
 
-function maintainConnection(ws) {
-    // 웹소켓 핑퐁 실행 코드, 2가왔을때 3을 보내줘야함
-    // 3을 보내지 않으면 websocket 연결이 끊어짐
-    setInterval(function () {
-        ws.send("3");
-        if (DEBUG) {
-            console.log("연결유지용발신");
-        }
-    }, WS_PING_PONG_INTERVAL);
-}
 /**
  * 에러 errorStatus의 값을 errorOn로 바꿔주는함수
  */
